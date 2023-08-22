@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* hidden yandex label*/
+/*
+.ymaps-2-1-79-copyright {
+  display: none!important;
+}
+.ymaps-2-1-79-map-copyrights-promo {
+  display: none;
+}
+*/
