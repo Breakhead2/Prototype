@@ -13,7 +13,7 @@ const App = () => {
     const [ activePortal, setActivePortal ] = useState(false);
 
   return (
-      <YMaps query={{ lang: 'en_RU', load: 'package.full' }}>
+      <YMaps query={{ load: 'package.full' }}>
         <div className="App">
             <Map width={"100vw"} height={"100vh"} defaultState={state}>
                 <Placemark
