@@ -1,15 +1,19 @@
 import { YMaps, Map, Placemark, Polyline } from '@pbe/react-yandex-maps';
 import './App.css';
 import {useState} from "react";
-import ActivePlacemark from "./components/ActivePlacemark/ActivePlacemark";
+import { Portal } from "./components/Portal";
+import BalloonComponent from "./components/BalloonComponent";
 
 const App = () => {
-    const [state, setState] = useState({
+    const state = {
         center: [53.195250, 50.137810],
         zoom: 14
-    });
+    };
+
+    const [ activePortal, setActivePortal ] = useState(false);
+
   return (
-      <YMaps>
+      <YMaps version={ '2.1.79' }>
         <div className="App">
             <Map width={"100vw"} height={"100vh"} defaultState={state}>
                 <Placemark
@@ -18,6 +22,28 @@ const App = () => {
                     properties={{
                         balloonContentBody:
                             "Самара космическая",
+                    }}
+                />
+                <Placemark
+                    modules={["geoObject.addon.balloon"]}
+                    geometry={[53.203793, 50.109937]}
+                    options={{
+                        preset: 'islands#circleIcon', // список темплейтов на сайте яндекса
+                        iconColor: '#0049ff', // цвет иконки, можно также задавать в hex
+                    }}
+                    properties={{
+                        balloonContent: "Монумент Славы",
+                    }}
+                />
+                <Placemark
+                    modules={["geoObject.addon.balloon"]}
+                    geometry={[53.194490, 50.104527]}
+                    options={{
+                        preset: 'islands#circleIcon', // список темплейтов на сайте яндекса
+                        iconColor: '#ff003b', // цвет иконки, можно также задавать в hex
+                    }}
+                    properties={{
+                        balloonContent: "Самарский академический театр оперы и баллета",
                     }}
                 />
                 <Polyline
@@ -48,6 +74,11 @@ const App = () => {
                     }}
                 />
             </Map>
+            {
+                activePortal && <Portal getHTMLElementId="driver-2">
+                    <BalloonComponent text="Монумент Славы" backgroundColor={'#335AE3'} color={'#ffffff'} />
+                </Portal>
+            }
         </div>
       </YMaps>
   );

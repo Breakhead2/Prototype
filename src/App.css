@@ -1,4 +1,7 @@
 .App {
   text-align: center;
-  filter: grayscale(1);
+}
+.balloon {
+  padding: 12px;
+  border-radius: 8px;
 }

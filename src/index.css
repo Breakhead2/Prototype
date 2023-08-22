@@ -12,11 +12,36 @@ code {
     monospace;
 }
 /* hidden yandex label*/
+
 /*
 .ymaps-2-1-79-copyright {
   display: none!important;
 }
 .ymaps-2-1-79-map-copyrights-promo {
   display: none;
+}
+*/
+.ymaps-2-1-79-ground-pane {
+  filter: grayscale(1);
+}
+/*
+.driver-card {
+  width: 240px;
+  height: auto;
+}
+
+.ymaps-2-1-79-balloon {
+  box-shadow: none !important;
+}
+
+.ymaps-2-1-79-balloon__content {
+  padding: 0 !important;
+  background: transparent !important;
+  margin: 0 !important;
+}
+
+.ymaps-2-1-79-balloon__layout {
+  background: transparent !important;
+  border: none !important;
 }
 */
