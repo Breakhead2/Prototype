@@ -3,6 +3,7 @@ import { useState } from "react";
 
 // image
 import image1 from "./assets/img/image-1.png";
+import point from "./assets/img/point.png";
 
 // data
 import { data } from "./data/data.js";
@@ -80,7 +81,7 @@ const App = () => {
           {places.map((place) => (
             <MyPlacemark key={place.id} ymaps={ymaps} data={place} />
           ))}
-          <AnotherPlacemark ymaps={ymaps} image={image1} />
+          <AnotherPlacemark ymaps={ymaps} image={image1} point={point} />
 
           <Polyline
             geometry={[

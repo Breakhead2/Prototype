@@ -2,6 +2,7 @@ import { Placemark } from "@pbe/react-yandex-maps";
 import { useState, useEffect } from "react";
 import $ from "jquery";
 import "./AnotherPlacemark.css";
+import point from "../../assets/img/point.png";
 
 const AnotherPlacemark = ({ ymaps, image }) => {
   const [template, setTemplate] = useState(null);
@@ -37,8 +38,6 @@ const AnotherPlacemark = ({ ymaps, image }) => {
         this._$element.css({
           left: -45,
           top: -this._$element[0].offsetHeight - 40,
-          // left: -(this._$element[0].offsetWidth / 2),
-          // top: -this._$element[0].offsetHeight,
         });
       },
 
@@ -65,17 +64,14 @@ const AnotherPlacemark = ({ ymaps, image }) => {
       modules={["geoObject.addon.balloon"]}
       geometry={[53.215904, 50.132277]}
       options={{
-        preset: "islands#circleIcon",
-        iconColor: "#0049ff",
+        // preset: "islands#circleIcon",
+        // iconColor: "#0049ff",
         closeButton: false,
         balloonLayout: myBalloonLayout,
         balloonContentLayout: myBalloonContentLayout,
         hideIconOnBalloonOpen: false,
-      }}
-      balloon={{
-        options: {
-          closeButton: false,
-        },
+        preset: "islands#circleIcon",
+        iconColor: "#0049ff",
       }}
       properties={{ balloonContent: "Памятник", balloonHeader: "Стела Ладьи" }}
     />
