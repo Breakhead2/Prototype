@@ -1,7 +1,7 @@
 import { Placemark } from "@pbe/react-yandex-maps";
 import { useState, useEffect } from "react";
 
-const MyPlacemark = ({ ymaps, data}) => {
+const AnotherPlacemark = ({ ymaps }) => {
   
   const [myBalloonLayout, setMyBallonLayout] = useState(null);
 
@@ -21,11 +21,15 @@ const MyPlacemark = ({ ymaps, data}) => {
   return (
     <Placemark
       modules={["geoObject.addon.balloon"]}
-      geometry={data.coord}
-      options = {data.options}
-      properties={data.properties}
+      geometry={[53.215904, 50.132277]}
+      options = {{
+        preset: "islands#circleIcon",
+        iconColor: '#081272',
+        hideIconOnBalloonOpen: false,
+    }}
+      properties={{balloonContentBody: "Стела Ладья"}}
     />
   );
 };
 
-export default MyPlacemark;
+export default AnotherPlacemark;

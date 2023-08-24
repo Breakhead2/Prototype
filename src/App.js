@@ -6,6 +6,7 @@ import { data } from "./data/data.js";
 
 //components
 import MyPlacemark from './components/MyPlacemark/index.js';
+import AnotherPlacemark from './components/AnotherPlacemark/AnotherPlacemark.js';
 
 // style
 import "./App.css";
@@ -70,7 +71,7 @@ const App = () => {
                 defaultState={defaultState}
                 >
                 {places.map(place => <MyPlacemark key={place.id} ymaps={ymaps} data={place} />)}
-
+                <AnotherPlacemark ymaps={ymaps} />
                 {/* <Polyline
                     geometry={[
                         [53.212712, 50.145279],
