@@ -1,12 +1,14 @@
-import { YMaps, Map, Placemark, Polyline } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark, Polyline,  } from '@pbe/react-yandex-maps';
 import {useState} from "react";
 
 // data
 import { data } from "./data/data.js";
 
+//components
+import MyPlacemark from './components/MyPlacemark/index.js';
+
 // style
 import "./App.css";
-
 
 const App = () => {
 
@@ -15,7 +17,9 @@ const App = () => {
         zoom: 14
     };
 
-    const customBalloon = `<div style="background-color:#A68900">Музей Самара космическая</div>`
+    // const fullPackage = 'package.full';
+
+    const [ymaps, setYmaps] = useState(null);
 
     const places = [
         {
@@ -51,29 +55,21 @@ const App = () => {
                 hideIconOnBalloonOpen: false,
             },
             properties: {
-                // balloonContentBody: "Музей Самара космическая",
-                balloonContentBody: customBalloon,
-            // }
+                balloonContentBody: "Музей Самара космическая",
             }
         }
     ];
 
   return (
-      <YMaps query={{ load: '', apikey: 'd1e0a31c-e1fb-4e9f-ae5c-b94400d2b79e' }} >
+      <YMaps query={{ load: 'templateLayoutFactory', apikey: 'd1e0a31c-e1fb-4e9f-ae5c-b94400d2b79e'}} >
         <div className="App">
             <Map 
+                onLoad={(ymaps) => setYmaps(ymaps)}
                 width={"100vw"} 
                 height={"100vh"} 
                 defaultState={defaultState}
                 >
-                {places.map(place => 
-                    <Placemark
-                        modules={["geoObject.addon.balloon"]}
-                        geometry={place.coord}
-                        options={place.options}
-                        properties={place.properties}
-                    />
-                )}
+                {places.map(place => <MyPlacemark key={place.id} ymaps={ymaps} data={place} />)}
 
                 {/* <Polyline
                     geometry={[
@@ -102,7 +98,7 @@ const App = () => {
                         strokeOpacity: 0.5,
                     }}
                 /> */}
-                
+
             </Map>
         </div>
       </YMaps>
