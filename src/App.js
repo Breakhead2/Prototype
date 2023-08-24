@@ -1,52 +1,81 @@
 import { YMaps, Map, Placemark, Polyline } from '@pbe/react-yandex-maps';
-import './App.css';
 import {useState} from "react";
-import { Portal } from "./components/Portal";
-import BalloonComponent from "./components/BalloonComponent";
+
+// data
+import { data } from "./data/data.js";
+
+// style
+import "./App.css";
+
 
 const App = () => {
-    const state = {
+
+    const defaultState = {
         center: [53.195250, 50.137810],
         zoom: 14
     };
 
-    const [ activePortal, setActivePortal ] = useState(false);
+    const customBalloon = `<div style="background-color:#A68900">Музей Самара космическая</div>`
+
+    const places = [
+        {
+            id: 1,
+            coord: [53.203793, 50.109937],
+            options: {
+                preset: "islands#circleIcon",
+                iconColor: '#0049ff',
+                hideIconOnBalloonOpen: false,
+            },
+            properties: {
+                balloonContentBody: "Монумент Славы",
+            }
+        },
+        {
+            id: 2,
+            coord: [53.195179, 50.103088],
+            options: {
+                preset: "islands#circleIcon",
+                iconColor: '#ff003b',
+                hideIconOnBalloonOpen: false,
+            },
+            properties: {
+                balloonContentBody: "Самарский академический театр оперы и баллета",
+            }
+        },
+        {
+            id: 3,
+            coord: [53.212712, 50.145279],
+            options: {
+                preset: "islands#circleIcon",
+                iconColor: '#A68900',
+                hideIconOnBalloonOpen: false,
+            },
+            properties: {
+                // balloonContentBody: "Музей Самара космическая",
+                balloonContentBody: customBalloon,
+            // }
+            }
+        }
+    ];
 
   return (
-      <YMaps query={{ load: 'package.full' }}>
+      <YMaps query={{ load: '', apikey: 'd1e0a31c-e1fb-4e9f-ae5c-b94400d2b79e' }} >
         <div className="App">
-            <Map width={"100vw"} height={"100vh"} defaultState={state}>
-                <Placemark
-                    modules={["geoObject.addon.balloon"]}
-                    geometry={[53.212712, 50.145279]}
-                    properties={{
-                        balloonContentBody:
-                            "Самара космическая",
-                    }}
-                />
-                <Placemark
-                    modules={["geoObject.addon.balloon"]}
-                    geometry={[53.203793, 50.109937]}
-                    options={{
-                        preset: 'islands#circleIcon', // список темплейтов на сайте яндекса
-                        iconColor: '#0049ff', // цвет иконки, можно также задавать в hex
-                    }}
-                    properties={{
-                        balloonContent: "Монумент Славы",
-                    }}
-                />
-                <Placemark
-                    modules={["geoObject.addon.balloon"]}
-                    geometry={[53.194490, 50.104527]}
-                    options={{
-                        preset: 'islands#circleIcon', // список темплейтов на сайте яндекса
-                        iconColor: '#ff003b', // цвет иконки, можно также задавать в hex
-                    }}
-                    properties={{
-                        balloonContent: "Самарский академический театр оперы и баллета",
-                    }}
-                />
-                <Polyline
+            <Map 
+                width={"100vw"} 
+                height={"100vh"} 
+                defaultState={defaultState}
+                >
+                {places.map(place => 
+                    <Placemark
+                        modules={["geoObject.addon.balloon"]}
+                        geometry={place.coord}
+                        options={place.options}
+                        properties={place.properties}
+                    />
+                )}
+
+                {/* <Polyline
                     geometry={[
                         [53.212712, 50.145279],
                         [53.211903, 50.143945],
@@ -72,13 +101,9 @@ const App = () => {
                         strokeWidth: 4,
                         strokeOpacity: 0.5,
                     }}
-                />
+                /> */}
+                
             </Map>
-            {
-                activePortal && <Portal getHTMLElementId="driver-2">
-                    <BalloonComponent text="Монумент Славы" backgroundColor={'#335AE3'} color={'#ffffff'} />
-                </Portal>
-            }
         </div>
       </YMaps>
   );
