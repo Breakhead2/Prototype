@@ -72,7 +72,8 @@ const App = () => {
                 >
                 {places.map(place => <MyPlacemark key={place.id} ymaps={ymaps} data={place} />)}
                 <AnotherPlacemark ymaps={ymaps} />
-                {/* <Polyline
+
+                <Polyline
                     geometry={[
                         [53.212712, 50.145279],
                         [53.211903, 50.143945],
@@ -94,11 +95,12 @@ const App = () => {
                     ]}
                     options={{
                         balloonCloseButton: false,
-                        strokeColor: "#000000",
+                        strokeColor: "#081272",
                         strokeWidth: 4,
                         strokeOpacity: 0.5,
+                        strokeStyle: "shortdash",
                     }}
-                /> */}
+                />
 
             </Map>
         </div>
