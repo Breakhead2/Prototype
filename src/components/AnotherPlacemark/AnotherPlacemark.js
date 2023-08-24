@@ -50,7 +50,6 @@ const AnotherPlacemark = ({ ymaps }) => {
         '<div class="popover-content">$[properties.balloonContent]</div>'
   );
 
-  console.log(myBalloonContentLayout);
   return (
     <Placemark
       modules={["geoObject.addon.balloon"]}
