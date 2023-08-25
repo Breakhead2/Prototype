@@ -37,7 +37,8 @@ const AnotherPlacemark = ({ ymaps, image }) => {
       applyElementOffset: function () {
         this._$element.css({
           left: -45,
-          top: -this._$element[0].offsetHeight - 40,
+          // top: -this._$element[0].offsetHeight - 40,
+          top: -140
         });
       },
 
@@ -50,7 +51,9 @@ const AnotherPlacemark = ({ ymaps, image }) => {
 
   let myBalloonContentLayout = ymaps?.templateLayoutFactory.createClass(
     `<div class="popup-inner-content">
-      <div class="image-container"><img src="${image}" alt="" /></div>
+      <div class="image-container">
+        <img src="${image}" alt="" />
+      </div>
       <div class="content">
         <div class="popup-title">$[properties.balloonHeader]</div>
         <div class="popup-content">$[properties.balloonContent]</div>
@@ -64,14 +67,12 @@ const AnotherPlacemark = ({ ymaps, image }) => {
       modules={["geoObject.addon.balloon"]}
       geometry={[53.215904, 50.132277]}
       options={{
-        // preset: "islands#circleIcon",
-        // iconColor: "#0049ff",
+        preset: "islands#circleIcon",
+        iconColor: "#0049ff",
         closeButton: false,
         balloonLayout: myBalloonLayout,
         balloonContentLayout: myBalloonContentLayout,
         hideIconOnBalloonOpen: false,
-        preset: "islands#circleIcon",
-        iconColor: "#0049ff",
       }}
       properties={{ balloonContent: "Памятник", balloonHeader: "Стела Ладьи" }}
     />
