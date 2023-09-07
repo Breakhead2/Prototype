@@ -2,10 +2,15 @@ import { Placemark } from "@pbe/react-yandex-maps";
 import { useState, useEffect } from "react";
 import $ from "jquery";
 import "./AnotherPlacemark.css";
-import point from "../../assets/img/point.png";
+import point from ".././../assets/img/point.png";
 
 const AnotherPlacemark = ({ ymaps, image }) => {
   const [template, setTemplate] = useState(null);
+  console.log(point);
+
+  let MyIconContentLayout = ymaps?.templateLayoutFactory.createClass(
+    '<img src="$[properties.iconContent]" />'
+  );
 
   let myBalloonLayout = ymaps?.templateLayoutFactory.createClass(
     '<div class="popup">' +
@@ -67,8 +72,8 @@ const AnotherPlacemark = ({ ymaps, image }) => {
       modules={["geoObject.addon.balloon"]}
       geometry={[53.215904, 50.132277]}
       options={{
-        preset: "islands#circleIcon",
-        iconColor: "#0049ff",
+        iconLayout: 'default#image',
+        iconImageHref: 'https://i.ibb.co/P4zgcZm/point.png',
         closeButton: false,
         balloonLayout: myBalloonLayout,
         balloonContentLayout: myBalloonContentLayout,
